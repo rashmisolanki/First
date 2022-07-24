@@ -1,7 +1,8 @@
 package com.project.first.controller;
 import com.project.first.config.ApplicationProperties;
-import com.project.first.dto.Request;
-import com.project.first.dto.Response;
+
+import com.water.models.OrderRequest;
+import com.water.models.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +26,10 @@ public class Home {
     }
 
     @PostMapping("/create/order")
-    public ResponseEntity<?> createOrder(@RequestBody Request request) {
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request) {
         String uri = aplicationProperties.getBaseUrl() + aplicationProperties.getContext() + aplicationProperties.getCreate();
         System.out.println(uri);
-        Response response = restTemplate.postForObject(uri,request,Response.class);
+        OrderResponse response = restTemplate.postForObject(uri,request, OrderResponse.class);
         return ResponseEntity.ok(response);
     }
 }
